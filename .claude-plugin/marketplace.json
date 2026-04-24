@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "Personal behavioral guidelines for AI coding agents, packaged as Rizum Skills.",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "plugins": [
     {
       "name": "rizum-skills",
       "source": "./",
       "description": "Structured planning, living documentation, limited self-verification, and bilingual communication guidelines for coding agents.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "rizum"
       },

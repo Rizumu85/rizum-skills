@@ -2,6 +2,7 @@
 name: rizum-guidelines
 description: Use only when the user explicitly invokes rizum-guidelines or asks to use Rizum Guidelines. Do not activate automatically for general coding tasks.
 license: MIT
+version: 1.0.1
 ---
 
 # Rizum Guidelines
