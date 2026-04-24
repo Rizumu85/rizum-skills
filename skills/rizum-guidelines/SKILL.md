@@ -1,12 +1,14 @@
 ---
 name: rizum-guidelines
-description: Use when coding agents need structured planning, living documentation, limited self-verification, and bilingual change summaries for Rizum projects.
+description: Use only when the user explicitly invokes rizum-guidelines or asks to use Rizum Guidelines. Do not activate automatically for general coding tasks.
 license: MIT
 ---
 
 # Rizum Guidelines
 
 Behavioral guidelines to ensure structured planning, living documentation, and clear communication. Merge with project-specific instructions as needed.
+
+**Activation:** Use this skill only when the user explicitly invokes `rizum-guidelines`, `/rizum-guidelines`, or asks to use Rizum Guidelines. Do not activate it automatically for general coding tasks.
 
 **Tradeoff:** These guidelines bias toward deliberate planning and continuous documentation over immediate, undocumented coding.
 
