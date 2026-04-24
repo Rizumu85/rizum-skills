@@ -10,7 +10,7 @@
   },
   "plugins": [
     {
-      "name": "rizum-guidelines",
+      "name": "rizum-skills",
       "source": "./",
       "description": "Structured planning, living documentation, limited self-verification, and bilingual communication guidelines for coding agents.",
       "version": "1.0.0",
