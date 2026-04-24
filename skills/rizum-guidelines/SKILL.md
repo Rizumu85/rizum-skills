@@ -1,10 +1,10 @@
 ---
-name: rizum-agent-guidelines
+name: rizum-guidelines
 description: Use when coding agents need structured planning, living documentation, limited self-verification, and bilingual change summaries for Rizum projects.
 license: MIT
 ---
 
-# Rizum Agent Guidelines
+# Rizum Guidelines
 
 Behavioral guidelines to ensure structured planning, living documentation, and clear communication. Merge with project-specific instructions as needed.
 

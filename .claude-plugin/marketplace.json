@@ -1,16 +1,16 @@
 {
-  "name": "rizum-agent",
-  "id": "rizum-agent",
+  "name": "rizum-skills",
+  "id": "rizum-skills",
   "owner": {
     "name": "rizum"
   },
   "metadata": {
-    "description": "Personal behavioral guidelines for AI coding agents, packaged as a Claude plugin marketplace.",
+    "description": "Personal behavioral guidelines for AI coding agents, packaged as Rizum Skills.",
     "version": "1.0.0"
   },
   "plugins": [
     {
-      "name": "rizum-agent-guidelines",
+      "name": "rizum-guidelines",
       "source": "./",
       "description": "Structured planning, living documentation, limited self-verification, and bilingual communication guidelines for coding agents.",
       "version": "1.0.0",

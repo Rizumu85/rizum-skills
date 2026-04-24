@@ -1,8 +1,10 @@
-# rizum-agent
+# Rizum Skills
 
 Personal behavioral guidelines for AI coding agents — **Claude Code**, **Cursor**, and **Codex CLI** — kept in one place and synced across every machine and every project.
 
 The rules themselves live in [`AGENTS.md`](./AGENTS.md). That file is the single source of truth; the other copies (`CLAUDE.md`, `.cursor/rules/rizum-agent.mdc`) are mirrors of the same content so each tool sees its expected filename.
+
+The installable skill is named `rizum-guidelines`.
 
 ## What it enforces
 
@@ -30,6 +32,18 @@ This does three things:
 | **Cursor** | Copies content to clipboard + prints instructions | Paste into Cursor → Settings → Rules → User Rules |
 
 Because Claude Code and Codex use symlinks, any `git pull` in `~/rizum-agent` instantly updates those agents — no re-install needed. Cursor is the only one that needs a manual paste when the rules change (Cursor stores User Rules inside the app, not on disk).
+
+## Install as a Skill
+
+For Codex Desktop skill installation:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo Rizumu85/rizum-agent \
+  --path skills/rizum-guidelines
+```
+
+Restart Codex Desktop after installing. Use the skill as `rizum-guidelines`.
 
 ## Sync updates
 
@@ -91,6 +105,8 @@ rm ~/.codex/AGENTS.md
 rizum-agent/
 ├── AGENTS.md                         # source of truth
 ├── CLAUDE.md                         # mirror for Claude Code
+├── .claude-plugin/                   # Claude marketplace metadata
+├── skills/rizum-guidelines/          # installable Codex/Claude skill
 ├── .cursor/rules/rizum-agent.mdc     # Cursor rule (with frontmatter)
 ├── install.sh                        # set up global symlinks + Cursor clipboard
 ├── sync.sh                           # git pull + re-run install
