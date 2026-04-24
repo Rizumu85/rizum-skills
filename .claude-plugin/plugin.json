@@ -1,0 +1,19 @@
+{
+  "name": "rizum-agent-guidelines",
+  "description": "Structured planning, living documentation, limited self-verification, and bilingual communication guidelines for coding agents.",
+  "version": "1.0.0",
+  "author": {
+    "name": "rizum"
+  },
+  "license": "MIT",
+  "keywords": [
+    "guidelines",
+    "planning",
+    "documentation",
+    "coding-agents",
+    "workflow"
+  ],
+  "skills": [
+    "./skills/rizum-agent-guidelines"
+  ]
+}
