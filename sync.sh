@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Pull the latest rules from GitHub and re-run the install.
-# Run from anywhere: ~/rizum-agent/sync.sh
+# Run from anywhere: ~/rizum-skills/sync.sh
 
 set -euo pipefail
 

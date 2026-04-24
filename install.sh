@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install rizum-agent rules globally.
+# Install Rizum Skills rules globally.
 # Covers every surface of every supported agent:
 #
 #   Claude Code  - terminal CLI, VS Code extension, JetBrains plugin, native
@@ -51,7 +51,7 @@ copy_to_clipboard() {
   return 1
 }
 
-echo "Installing rizum-agent rules globally..."
+echo "Installing Rizum Skills rules globally..."
 echo ""
 
 echo "[Claude Code]  CLI + VS Code + JetBrains + native desktop wrapper"
