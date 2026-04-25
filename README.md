@@ -18,6 +18,7 @@ The installable skill is called `rizum-guidelines`.
 - Keeps `plan.md` as a checklist and updates it while work happens.
 - Limits self-checking to syntax or static checks.
 - Leaves full testing to you.
+- Gives beginner-friendly testing steps when you need to test something.
 - Uses English for files and Chinese for chat summaries.
 
 ## Install The Global Rules

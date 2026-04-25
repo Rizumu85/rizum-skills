@@ -2,7 +2,7 @@
 name: rizum-guidelines
 description: Use only when the user explicitly invokes rizum-guidelines or asks to use Rizum Guidelines. Do not activate automatically for general coding tasks.
 license: MIT
-version: 1.0.3
+version: 1.0.4
 ---
 
 # Rizum Guidelines
@@ -42,7 +42,24 @@ Use the files this way:
 - Break down the plan into sequential steps using To-Do checklists, such as `- [ ]`.
 - Size your steps appropriately: they must be small enough to be independently testable and verifiable, but not so micro-granular that they clutter the plan.
 
-## 3. Living Documents
+## 3. User Testing Guidance
+
+**When the user needs to test, tell them at the right moment and make the steps easy to follow.**
+
+When a plan step requires user testing, pause at the right time and clearly ask the user to test before continuing. Do this after the relevant change is implemented and any allowed syntax/static checks are complete.
+
+Give the user a small, beginner-friendly checklist. Assume the user knows only a little programming. Avoid vague instructions like "test it". Say exactly what to open, what to click or run, what result should appear, and what information to report back if something looks wrong.
+
+A good testing handoff looks like this:
+
+- What changed: one short sentence.
+- How to test: 2-5 numbered steps the user can follow.
+- Expected result: what success should look like.
+- What to tell me: the specific error, screenshot, log line, or behavior to send back.
+
+Keep these testing steps small enough that the user can complete them without needing to understand the whole codebase.
+
+## 4. Living Documents
 
 **Keep your documentation synced with reality.**
 
@@ -50,7 +67,7 @@ Use the files this way:
 - Treat your documentation as agile. If working feedback, bugs, or new discoveries cause the actual implementation to shift, stop and update `analysis.md`, `design.md`, and `plan.md` to reflect the new direction.
 - Never let the code drift away from the documentation.
 
-## 4. Execution and Testing Constraints
+## 5. Execution and Testing Constraints
 
 **Delegate full testing to the user. Limit self-verification to syntax.**
 
@@ -58,7 +75,7 @@ Use the files this way:
 - Leave functional testing and end-to-end verification to the user.
 - If you need to verify code correctness during implementation, restrict your checks strictly to basic syntax validation and static error checking.
 
-## 5. Bilingual Communication Protocol
+## 6. Bilingual Communication Protocol
 
 **Summarize in Chinese, document in English.**
 
