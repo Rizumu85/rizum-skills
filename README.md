@@ -1,41 +1,48 @@
 # Rizum Skills
 
-Personal behavioral guidelines for AI coding agents — **Claude Code**, **Cursor**, and **Codex CLI** — kept in one place and synced across every machine and every project.
+Rizum Skills is a small set of personal rules for AI coding agents.
 
-The rules themselves live in [`AGENTS.md`](./AGENTS.md). That file is the single source of truth; the other copies (`CLAUDE.md`, `.cursor/rules/rizum-agent.mdc`) are mirrors of the same content so each tool sees its expected filename.
+It is meant for people who want agents to slow down a little, write down the plan, keep that plan updated, and leave full testing to the human unless asked otherwise.
 
-The installable skill is named `rizum-guidelines`.
+The main rule file is [`AGENTS.md`](./AGENTS.md). The Claude and Cursor files are copies or mirrors so different tools can read the same rules.
 
-## What it enforces
+The installable skill is called `rizum-guidelines`.
 
-- Mandatory planning via `analysis.md`, `design.md`, `plan.md` before code
-- Plans as living to-do checklists that stay in sync with the code
-- Self-verification limited to syntax checks; full testing delegated to you
-- Bilingual protocol: all docs in English, chat summaries in Chinese
+## What It Does
 
-Read [`AGENTS.md`](./AGENTS.md) for the full text.
+- Makes the agent check for `analysis.md`, `design.md`, and `plan.md`.
+- Makes the agent create missing planning files before editing code.
+- Makes `design.md` start with the project goal.
+- Keeps `plan.md` as a checklist and updates it while work happens.
+- Limits self-checking to syntax or static checks.
+- Leaves full testing to you.
+- Uses English for files and Chinese for chat summaries.
 
-## Install (one-time per machine)
+## Install The Global Rules
+
+Clone the repo:
 
 ```bash
 git clone https://github.com/Rizumu85/rizum-skills.git ~/rizum-skills
 cd ~/rizum-skills
+```
+
+Run the installer:
+
+```bash
 ./install.sh
 ```
 
-This does three things:
+This links the rules into:
 
-| Agent | Where it installs | How it applies |
-|---|---|---|
-| **Claude Code** | Symlinks `~/.claude/CLAUDE.md` → `AGENTS.md` | Loaded automatically as user memory for every session |
-| **Codex CLI** | Symlinks `~/.codex/AGENTS.md` → `AGENTS.md` | Loaded automatically as global agent instructions |
-| **Cursor** | Copies content to clipboard + prints instructions | Paste into Cursor → Settings → Rules → User Rules |
+- Claude Code: `~/.claude/CLAUDE.md`
+- Codex CLI/Desktop: `~/.codex/AGENTS.md`
 
-Because Claude Code and Codex use symlinks, any `git pull` in `~/rizum-skills` instantly updates those agents — no re-install needed. Cursor is the only one that needs a manual paste when the rules change (Cursor stores User Rules inside the app, not on disk).
+For Cursor, the installer copies the rules to your clipboard. Paste them into Cursor User Rules.
 
-## Install as a Skill
+## Install The Codex Skill
 
-For Codex Desktop skill installation:
+Use this if you want Codex Desktop to expose the skill as `rizum-guidelines`:
 
 ```bash
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
@@ -43,74 +50,68 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --path skills/rizum-guidelines
 ```
 
-Restart Codex Desktop after installing. Use the skill as `rizum-guidelines`.
+Restart Codex Desktop after installing.
 
-## Sync updates
+The skill is explicit-only. Use it by saying something like:
 
-When you push a change to the repo:
+```text
+Use rizum-guidelines for this task.
+```
+
+## Install In Claude
+
+Add this repository as a Claude marketplace:
+
+```text
+https://github.com/Rizumu85/rizum-skills
+```
+
+The Claude package should show as `Rizum skills`.
+
+The skill command stays:
+
+```text
+/rizum-guidelines
+```
+
+## Update
+
+Pull the latest repo:
 
 ```bash
-~/rizum-skills/sync.sh
+cd ~/rizum-skills
+git pull
 ```
 
-Or manually:
+Then restart the app that reads the rules.
+
+For Codex Desktop skill installs, reinstall or copy the updated skill file into:
+
+```text
+~/.codex/skills/rizum-guidelines/SKILL.md
+```
+
+## Project-Only Use
+
+If you only want these rules for one project, copy the files into that project:
 
 ```bash
-cd ~/rizum-skills && git pull
+cp ~/rizum-skills/AGENTS.md /path/to/project/AGENTS.md
+cp ~/rizum-skills/CLAUDE.md /path/to/project/CLAUDE.md
 ```
 
-The Claude and Codex symlinks pick up the new content on next session. For Cursor, re-run `./install.sh` to copy the fresh rules to your clipboard, then paste into Settings → Rules.
+## Files
 
-## Editing the rules
-
-1. Edit `AGENTS.md` (that's the source of truth).
-2. Mirror the edit into `CLAUDE.md` and `.cursor/rules/rizum-agent.mdc` so anyone reading the repo sees consistent content — or just run the helper:
-   ```bash
-   cp AGENTS.md CLAUDE.md
-   # for the .mdc, keep the YAML frontmatter and replace everything below it
-   ```
-3. Commit and push:
-   ```bash
-   git add -A && git commit -m "update rules" && git push
-   ```
-4. On each machine: `~/rizum-skills/sync.sh`.
-
-## Per-project override
-
-If you want these rules to apply to a specific project (not globally):
-
-```bash
-# Claude Code / Codex CLI
-cp ~/rizum-skills/AGENTS.md /path/to/your/project/AGENTS.md
-cp ~/rizum-skills/CLAUDE.md /path/to/your/project/CLAUDE.md
-
-# Cursor
-mkdir -p /path/to/your/project/.cursor/rules
-cp ~/rizum-skills/.cursor/rules/rizum-agent.mdc /path/to/your/project/.cursor/rules/
-```
-
-Per-project files take precedence over the global ones when both exist.
-
-## Uninstall
-
-```bash
-rm ~/.claude/CLAUDE.md    # removes the symlink, not the source
-rm ~/.codex/AGENTS.md
-# In Cursor: Settings → Rules → clear User Rules
-```
-
-## Repo layout
-
-```
+```text
 rizum-skills/
-├── AGENTS.md                         # source of truth
-├── CLAUDE.md                         # mirror for Claude Code
-├── .claude-plugin/                   # Claude marketplace metadata
-├── skills/rizum-guidelines/          # installable Codex/Claude skill
-├── .cursor/rules/rizum-agent.mdc     # Cursor rule (with frontmatter)
-├── install.sh                        # set up global symlinks + Cursor clipboard
-├── sync.sh                           # git pull + re-run install
-└── README.md
+├── AGENTS.md
+├── CLAUDE.md
+├── README.md
+├── README.zh.md
+├── .claude-plugin/
+├── skills/rizum-guidelines/SKILL.md
+├── install.sh
+└── sync.sh
 ```
 
 ## License

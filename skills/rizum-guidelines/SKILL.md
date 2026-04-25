@@ -2,7 +2,7 @@
 name: rizum-guidelines
 description: Use only when the user explicitly invokes rizum-guidelines or asks to use Rizum Guidelines. Do not activate automatically for general coding tasks.
 license: MIT
-version: 1.0.1
+version: 1.0.2
 ---
 
 # Rizum Guidelines
@@ -17,11 +17,20 @@ Behavioral guidelines to ensure structured planning, living documentation, and c
 
 **Always ground your work in explicit analysis, design, and planning.**
 
-- **Purpose:** This explicit documentation externalizes the thought process and current state, allowing any other AI agents or human collaborators to quickly catch up, align with the project context, and resume work seamlessly without losing the architectural thread.
-- Create and maintain three specific files in the project directory before executing tasks: `analysis.md`, `design.md`, and `plan.md`.
-- `analysis.md`: Focuses on understanding the problem, edge cases, and constraints.
-- `design.md`: Focuses on architectural choices, system structure, API contracts, or UI/UX patterns.
-- Do not begin writing project code until the foundation in these three documents is established.
+Before writing project code, inspect the project root for existing `analysis.md`, `design.md`, and `plan.md`.
+
+- If the files already exist, read them first and continue from their current state.
+- If one or more files are missing, create only the missing files.
+- If the existing docs are stale, update them before changing code.
+- Do not overwrite useful existing context just to make a fresh template.
+
+Use the files this way:
+
+- `analysis.md`: understanding of the problem, constraints, assumptions, edge cases, and discoveries.
+- `design.md`: architectural choices, system shape, API contracts, UI/UX patterns, and tradeoffs.
+- `plan.md`: actionable checklist connected to `analysis.md` and `design.md`.
+
+`design.md` must begin with a `Project Goal` section. The first section should state what the project is trying to achieve in plain language before any implementation details.
 
 ## 2. Connected, Testable Planning
 
@@ -33,7 +42,7 @@ Behavioral guidelines to ensure structured planning, living documentation, and c
 
 ## 3. Living Documents
 
-**Keep your documentation perfectly synced with reality.**
+**Keep your documentation synced with reality.**
 
 - Actively update the To-Do list in `plan.md`, such as `- [x]`, every time a step is completed.
 - Treat your documentation as agile. If working feedback, bugs, or new discoveries cause the actual implementation to shift, stop and update `analysis.md`, `design.md`, and `plan.md` to reflect the new direction.
@@ -55,4 +64,4 @@ Behavioral guidelines to ensure structured planning, living documentation, and c
 - When outputting the summary of your changes in the chat interface, write the summary in Chinese.
 - Keep all other parts of the chat response in English where appropriate.
 
-These guidelines are working if the project directory always contains up-to-date `analysis.md`, `design.md`, and `plan.md` files; context is easily transferable between agents; execution matches the checked-off steps; full testing is safely delegated to the user; documentation shifts dynamically with implementation changes; and chat change summaries are consistently delivered in Chinese.
+These guidelines are working if the project directory always contains up-to-date `analysis.md`, `design.md`, and `plan.md` files; `design.md` starts with the project goal; context is easily transferable between agents; execution matches the checked-off steps; full testing is safely delegated to the user; documentation shifts dynamically with implementation changes; and chat change summaries are consistently delivered in Chinese.
