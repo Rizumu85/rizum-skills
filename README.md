@@ -58,6 +58,8 @@ The skill is explicit-only. Use it by saying something like:
 Use rizum-guidelines for this task.
 ```
 
+After you invoke it, the agent should write a short working agreement into the project docs, usually in `plan.md`. That makes later turns easier to resume, even if the skill itself is not automatically reloaded.
+
 ## Install In Claude
 
 Add this repository as a Claude marketplace:

@@ -58,6 +58,8 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 Use rizum-guidelines for this task.
 ```
 
+你调用一次之后，agent 应该在项目文档里写一条简短的 working agreement，通常放在 `plan.md`。这样后面的对话就算没有自动重新加载 skill，也可以通过项目文档接上。
+
 ## 安装到 Claude
 
 在 Claude 里添加这个 marketplace：

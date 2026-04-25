@@ -2,7 +2,7 @@
 name: rizum-guidelines
 description: Use only when the user explicitly invokes rizum-guidelines or asks to use Rizum Guidelines. Do not activate automatically for general coding tasks.
 license: MIT
-version: 1.0.2
+version: 1.0.3
 ---
 
 # Rizum Guidelines
@@ -10,6 +10,8 @@ version: 1.0.2
 Behavioral guidelines to ensure structured planning, living documentation, and clear communication. Merge with project-specific instructions as needed.
 
 **Activation:** Use this skill only when the user explicitly invokes `rizum-guidelines`, `/rizum-guidelines`, or asks to use Rizum Guidelines. Do not activate it automatically for general coding tasks.
+
+**Sticky use:** After explicit activation, treat Rizum Guidelines as active for the current project or conversation until the user says to stop. Because skills may not be reloaded automatically in later turns, write a short working agreement into the project docs during the first activated turn. Prefer adding it to `plan.md` under a `Working Agreement` section; if `plan.md` is missing, add it to `analysis.md` after creating or reading the required docs. The note should say: `Rizum Guidelines are active for this project/thread until the user says otherwise.`
 
 **Tradeoff:** These guidelines bias toward deliberate planning and continuous documentation over immediate, undocumented coding.
 
