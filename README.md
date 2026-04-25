@@ -1,5 +1,7 @@
 # Rizum Skills
 
+[English](./README.md) | [中文](./README.zh.md)
+
 Rizum Skills is a small set of personal rules for AI coding agents.
 
 It is meant for people who want agents to slow down a little, write down the plan, keep that plan updated, and leave full testing to the human unless asked otherwise.
@@ -46,8 +48,7 @@ Use this if you want Codex Desktop to expose the skill as `rizum-guidelines`:
 
 ```bash
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
-  --repo Rizumu85/rizum-skills \
-  --path skills/rizum-guidelines
+  --url https://github.com/Rizumu85/rizum-skills/tree/main/skills/rizum-guidelines
 ```
 
 Restart Codex Desktop after installing.
