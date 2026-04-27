@@ -4,7 +4,7 @@
 
 Rizum Skills 是一组给 AI 编程助手用的个人规则。
 
-它的目的很简单：让 AI 不要一上来就改代码，而是先看清楚项目、写下分析和计划、边做边更新计划。完整测试默认交给人来跑，AI 只做语法或静态检查，除非你明确要求更多。
+它的目的很简单：让 AI 不要一上来就改代码，而是先看清楚项目、写下重要的分析和计划、记住这套规则已经启用。测试默认交给人来跑，除非你明确要求或 debug 需要。
 
 主要规则在 [`AGENTS.md`](./AGENTS.md)。`CLAUDE.md` 和 Cursor 相关文件只是为了让不同工具能读到同一套规则。
 
@@ -18,6 +18,7 @@ Rizum Skills 是一组给 AI 编程助手用的个人规则。
 - 要求 `design.md` 开头先写清楚项目目标。
 - `plan.md` 要有大方向，每个大方向下面再放具体实现步骤。
 - 文档保持有用就好，不要每个很小的细节都更新。
+- 调用 skill 后，会把 `Rizum Guidelines are active for this project/thread until the user says otherwise.` 写进相关的 agent 文档，比如 `AGENTS.md` 或 `CLAUDE.md`。
 - 默认不跑语法、构建或测试命令；只有你要求，或者 debug 反馈需要时才跑。
 - 需要你测试的时候，会给出小白也能照做的测试步骤。
 - 文件内容用英文，聊天里的总结用中文。
@@ -61,7 +62,7 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 Use rizum-guidelines for this task.
 ```
 
-你调用一次之后，agent 应该在项目文档里写一条简短的 working agreement，通常放在 `plan.md`。这样后面的对话就算没有自动重新加载 skill，也可以通过项目文档接上。
+你调用一次之后，agent 应该在相关项目文档里写一条简短的 working agreement。优先写到 `AGENTS.md` 或 `CLAUDE.md` 这种 agent 会读的文件；如果没有这些文件，再写到 `plan.md`。这样后面的对话就算没有自动重新加载 skill，也可以通过项目文档接上。
 
 ## 安装到 Claude
 

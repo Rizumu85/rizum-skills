@@ -4,7 +4,7 @@
 
 Rizum Skills is a small set of personal rules for AI coding agents.
 
-It is meant for people who want agents to slow down a little, write down the plan, keep that plan updated, and leave full testing to the human unless asked otherwise.
+It is meant for people who want agents to slow down a little, write down the important plan, remember that the rules are active, and leave testing to the human unless asked otherwise.
 
 The main rule file is [`AGENTS.md`](./AGENTS.md). The Claude and Cursor files are copies or mirrors so different tools can read the same rules.
 
@@ -18,6 +18,7 @@ The installable skill is called `rizum-guidelines`.
 - Makes `design.md` start with the project goal.
 - Makes `plan.md` include high-level directions, with concrete implementation steps under each direction.
 - Keeps documentation useful without updating it for every tiny detail.
+- Writes `Rizum Guidelines are active for this project/thread until the user says otherwise.` into relevant agent-facing docs such as `AGENTS.md` or `CLAUDE.md` after you invoke the skill.
 - Does not run syntax/build/test checks by default; checks happen when you ask or when debugging needs them.
 - Gives beginner-friendly testing steps when you need to test something.
 - Uses English for files and Chinese for chat summaries.
@@ -61,7 +62,7 @@ The skill is explicit-only. Use it by saying something like:
 Use rizum-guidelines for this task.
 ```
 
-After you invoke it, the agent should write a short working agreement into the project docs, usually in `plan.md`. That makes later turns easier to resume, even if the skill itself is not automatically reloaded.
+After you invoke it, the agent should write a short working agreement into relevant project docs. It should prefer agent-facing files like `AGENTS.md` or `CLAUDE.md`; if those are not available, it can use `plan.md`. That makes later turns easier to resume, even if the skill itself is not automatically reloaded.
 
 ## Install In Claude
 

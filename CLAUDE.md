@@ -1,33 +1,43 @@
 # Rizum Agent Guidelines
 
-Behavioral guidelines to ensure deliberate planning, useful documentation, and clear communication. Merge with project-specific instructions as needed.
+Behavioral guidelines for coding agents that need planning, handoff docs, and clear user communication.
 
-**Activation:** Use this skill only when the user explicitly invokes `rizum-guidelines`, `/rizum-guidelines`, or asks to use Rizum Guidelines. Do not activate it automatically for general coding tasks.
+**Activation:** Use this skill only when the user explicitly invokes `rizum-guidelines`, `/rizum-guidelines`, or asks to use Rizum Guidelines.
 
-**Sticky use:** After explicit activation, treat Rizum Guidelines as active for the current project or conversation until the user says to stop. Because skills may not be reloaded automatically in later turns, write a short working agreement into the project docs during the first activated turn. Prefer adding it to `plan.md` under a `Working Agreement` section; if `plan.md` is missing, add it to `analysis.md` after creating or reading the required docs. The note should say: `Rizum Guidelines are active for this project/thread until the user says otherwise.`
+**Tradeoff:** These guidelines bias toward deliberate planning and useful handoff documentation over speed. For trivial tasks, use judgment.
 
-**Tradeoff:** These guidelines bias toward deliberate planning and useful handoff documentation over immediate, undocumented coding.
+## 1. Persist Activation
 
-## 1. Mandatory Documentation
+**If Rizum is active, write it down where future agents will read it.**
 
-**First read what already exists, then create only what is missing.**
+After explicit activation:
+- Treat Rizum Guidelines as active for this project/thread until the user says otherwise.
+- Add this exact line to each relevant agent-facing doc: `Rizum Guidelines are active for this project/thread until the user says otherwise.`
+- Prefer `AGENTS.md` for Codex and `CLAUDE.md` for Claude when those files exist or belong in the project.
+- If agent instruction files are unavailable, add the line to project docs, preferably `plan.md` under `Working Agreement`.
+- Do not create global rules or unrelated config unless the user asks.
 
-Before writing project code, inspect the project root for existing `analysis.md`, `design.md`, and `plan.md`.
+The goal is simple: later turns should recover the agreement by reading project files, even if the skill is not reloaded.
 
-- If the files already exist, read them first and continue from their current state.
-- If one or more files are missing, create only the missing files.
-- If the existing docs are stale, update the relevant section before changing code.
-- Do not overwrite useful existing context just to make a fresh template.
+## 2. Ground The Work
 
-Use the files this way:
+**Read first. Create only what is missing.**
 
-- `analysis.md`: technical implementation analysis. Write down API docs read, reference implementations inspected, relevant code findings, constraints, edge cases, and the technical conclusions you draw from that research.
-- `design.md`: UI, interaction, and user experience design. For non-UI work, use it for user-facing behavior, workflow design, and product-level tradeoffs. It must begin with a `Project Goal` section that states what the project is trying to achieve in plain language.
-- `plan.md`: execution plan. It should contain high-level direction sections, and each high-level direction should contain concrete implementation checklist steps.
+Before project code changes:
+- Check for `analysis.md`, `design.md`, and `plan.md` in the project root.
+- Read existing docs before writing new ones.
+- Create only missing docs.
+- Update stale sections before code changes.
+- Never overwrite useful context just to install a template.
 
-## 2. Connected, Testable Planning
+Use the docs this way:
+- `analysis.md`: technical implementation analysis. Capture API docs read, reference implementations inspected, relevant code findings, constraints, edge cases, and conclusions.
+- `design.md`: UI, interaction, UX, and user-facing behavior. Start with `Project Goal` in plain language.
+- `plan.md`: high-level directions with concrete implementation steps under each direction.
 
-**Plan at two levels: direction first, implementation steps second.**
+## 3. Plan In Two Layers
+
+**Direction first. Steps second.**
 
 Structure `plan.md` like this:
 
@@ -51,51 +61,52 @@ Goal: One sentence describing this direction.
 - [ ] Concrete implementation step
 ```
 
-Keep implementation steps small enough to verify independently, but not so tiny that the plan becomes noisy. Add or adjust small steps during the agent/user conversation when it helps the work stay clear.
+Good plan steps are:
+- Concrete enough to verify.
+- Small enough to finish independently.
+- Not so tiny that the plan becomes noise.
+- Grouped under the direction they serve.
 
-## 3. User Testing Guidance
+## 4. Keep Docs Alive, Not Loud
 
-**When the user needs to test, tell them at the right moment and make the steps easy to follow.**
+**Update when direction changes. Don't narrate every keystroke.**
 
-When a plan step requires user testing, pause at the right time and clearly ask the user to test before continuing. Do this after the relevant change is implemented and after any user-requested or debug-required checks are complete.
+Update docs when:
+- The high-level direction changes.
+- The implementation approach changes.
+- New API docs, reference code, or technical findings matter.
+- User feedback changes the plan.
+- A meaningful plan item is completed.
 
-Give the user a small, beginner-friendly checklist. Assume the user knows only a little programming. Avoid vague instructions like "test it". Say exactly what to open, what to click or run, what result should appear, and what information to report back if something looks wrong.
+Do not update docs for every tiny thought, line edit, or local cleanup.
 
-A good testing handoff looks like this:
+## 5. Let The User Test
 
+**When the user needs to test, make it easy.**
+
+When a change needs user verification, pause at the right moment and give a beginner-friendly handoff:
 - What changed: one short sentence.
-- How to test: 2-5 numbered steps the user can follow.
-- Expected result: what success should look like.
-- What to tell me: the specific error, screenshot, log line, or behavior to send back.
+- How to test: 2-5 numbered steps.
+- Expected result: what success looks like.
+- What to send back: screenshot, exact error, log line, or behavior.
 
-Keep these testing steps small enough that the user can complete them without needing to understand the whole codebase.
+Avoid vague instructions like "test it". Say what to open, click, run, and observe.
 
-## 4. Living Documents
+## 6. Don't Run Checks By Default
 
-**Keep documentation useful, not noisy.**
+**No syntax, build, or test commands unless there is a reason.**
 
-Do not update the documents for every tiny thought or line-level change. Update them when the high-level direction changes, when the implementation approach changes, when new technical findings matter, or when a plan item is completed.
-
-- Update `analysis.md` when new API docs, reference code, or technical findings change the implementation understanding.
-- Update `design.md` when UI, interaction, UX, or user-facing behavior decisions change.
-- Update `plan.md` when a high-level direction changes, implementation steps change, or checklist items are completed.
-- It is fine to add or adjust concrete plan substeps during collaboration, but keep them appropriately sized.
-
-## 5. Execution and Testing Constraints
-
-**Do not run checks by default. Let user feedback drive debug checks.**
-
-- Do not run full project compilations or comprehensive test suites unless the user explicitly asks.
+- Do not run full project compilations or comprehensive test suites unless the user asks.
 - Do not run syntax checks by default.
-- Run syntax, static, build, or test commands only when the user asks, or when user feedback/debugging makes that check necessary.
-- Leave functional testing and end-to-end verification to the user unless they explicitly ask the agent to perform it.
+- Run syntax, static, build, or test commands only when the user asks, or when user feedback/debugging makes the check necessary.
+- Leave functional and end-to-end testing to the user unless they explicitly ask the agent to perform it.
 
-## 6. Bilingual Communication Protocol
+## 7. Communicate Bilingually
 
-**Summarize in Chinese, document in English.**
+**English in files. Chinese in summaries.**
 
-- Write all project files, code, comments, `analysis.md`, `design.md`, `plan.md`, and technical documentation strictly in English.
-- When outputting the summary of your changes in the chat interface, write the summary in Chinese.
-- Keep all other parts of the chat response in English where appropriate.
+- Write project files, code, comments, `analysis.md`, `design.md`, `plan.md`, and technical docs in English.
+- Summarize chat changes in Chinese.
+- Keep other chat content in English when that is more natural for the task.
 
-These guidelines are working if the project has useful and current `analysis.md`, `design.md`, and `plan.md` files; `design.md` starts with the project goal; `analysis.md` captures technical implementation research; `plan.md` separates high-level direction from implementation steps; user testing handoffs are beginner-friendly; checks are only run when requested or debug-driven; and chat change summaries are consistently delivered in Chinese.
+These guidelines are working if the project has useful `analysis.md`, `design.md`, and `plan.md`; `design.md` starts with `Project Goal`; `plan.md` separates directions from implementation steps; activation is visible in agent-facing docs; user testing handoffs are clear; checks only run when requested or debug-driven; and change summaries are in Chinese.
