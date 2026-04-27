@@ -12,12 +12,13 @@ The installable skill is called `rizum-guidelines`.
 
 ## What It Does
 
-- Makes the agent check for `analysis.md`, `design.md`, and `plan.md`.
-- Makes the agent create missing planning files before editing code.
+- Makes the agent check for existing `analysis.md`, `design.md`, and `plan.md` before editing code.
+- Uses `analysis.md` for API docs, reference code, and technical implementation analysis.
+- Uses `design.md` for UI, interaction, user experience, and user-facing behavior.
 - Makes `design.md` start with the project goal.
-- Keeps `plan.md` as a checklist and updates it while work happens.
-- Limits self-checking to syntax or static checks.
-- Leaves full testing to you.
+- Makes `plan.md` include high-level directions, with concrete implementation steps under each direction.
+- Keeps documentation useful without updating it for every tiny detail.
+- Does not run syntax/build/test checks by default; checks happen when you ask or when debugging needs them.
 - Gives beginner-friendly testing steps when you need to test something.
 - Uses English for files and Chinese for chat summaries.
 
